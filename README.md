@@ -7,10 +7,14 @@
 
 1. clone 本项目到本地
 2. cd 到本项目下，运行 mvn install
-3. 运行 mvn archetype:generate -DarchetypeCatalog=local 选择 gupao-archeypte的数字
+3. cd 到你想要的目录下
+4. 运行 mvn archetype:generate -DarchetypeCatalog=local 选择 gupao-archeypte的数字
    然后依次输入
    groupId
    artifactId
    version(注意version一定要保持一致)
    package（可以自定义）
+5. 此步可不做，但是最好是做一下
+   如果是 intelliJ 运行 mvn idea:idea
+   如果是 Eclipse 运行 mvn eclipse:eclipse
 
