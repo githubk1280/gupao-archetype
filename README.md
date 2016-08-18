@@ -25,3 +25,8 @@
 
    如果是 Eclipse 运行 mvn eclipse:eclipse
 
+### 发布到远程仓库操作
+
+1. 发布
+
+2. mvn archetype:generate -DarchetypeGroupId=com.gp -DarchetypeArtifactId=gupao-archetype -DarchetypeVersion=1.0-SNAPSHOT
