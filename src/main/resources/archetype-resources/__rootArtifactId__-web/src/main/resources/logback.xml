@@ -1,0 +1,43 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property resource="config/app.properties"/>
+    <property name="LOG_HOME" value="${symbol_dollar}{app.log.dir}"/>
+    <property name="pattern"
+              value="%date{ISO8601} %-5level [%thread] %logger{32} [%X{logPrefix}] - %msg%n"/>
+    <property name="charset" value="UTF-8"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="DEFAULT-APPENDER"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${symbol_dollar}{LOG_HOME}/default.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{LOG_HOME}/default_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>50</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>${symbol_dollar}{charset}</charset>
+            <pattern>${symbol_dollar}{pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <logger name="${package}.web" level="INFO"/>
+    <logger name="${package}.dal" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="DEFAULT-APPENDER"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
